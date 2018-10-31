@@ -3,13 +3,15 @@ import Router from 'vue-router'
 import Welcome from '@/pages/Welcome'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
+import ResetPwd from '@/pages/ResetPwd'
+import UserAgreement from '@/pages/UserAgreement'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path : '/welcome',
+      path : '/',
       name : 'welcome',
       component : Welcome
     },
@@ -19,9 +21,19 @@ export default new Router({
       component : Login
     },
     {
-      path : '/',
+      path : '/register',
       name : 'register',
       component : Register
+    },
+    {
+      path : '/resetPwd',
+      name : 'resetPwd',
+      component : ResetPwd
+    },
+    {
+      path : '/userAgreement',
+      name : 'userAgreement',
+      component : UserAgreement
     }
   ]
 })

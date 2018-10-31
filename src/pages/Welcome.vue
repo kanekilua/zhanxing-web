@@ -2,8 +2,8 @@
     <div class="welcome" :style="background">
         <div class="buttonGroup">
             <flexbox>
-                <flexbox-item><x-button :gradients="['#3237a6', '#7119d4']">登入</x-button></flexbox-item>
-                <flexbox-item><x-button class="signupButton">注册</x-button></flexbox-item>
+                <flexbox-item><x-button :gradients="['#3237a6', '#7119d4']" link="login">登入</x-button></flexbox-item>
+                <flexbox-item><x-button class="signupButton" link="register">注册</x-button></flexbox-item>
             </flexbox>
         </div>
     </div>

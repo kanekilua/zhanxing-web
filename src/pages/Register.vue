@@ -1,20 +1,17 @@
 <template>
     <div class="register">
-        <div style="position:relative">
-            <img :src="topImg" alt="logoBackground" class="img">
-            <img :src="logoImg" alt="logo" class="logo">
-        </div>
+        <v-logo-header></v-logo-header>
         <div class="form">
             <group>
                 <x-input placeholder="请输入您的手机号"></x-input>
                 <x-input placeholder="请输入您的验证码">
-                    <x-button slot="right" :gradients="['#3237a6', '#7119d4']" mini>发送验证码</x-button>
+                    <x-button slot="right" :gradients="['#3237a6', '#7119d4']" mini>获取验证码</x-button>
                 </x-input>
                 <x-input placeholder="请设置您的密码"></x-input>
                 <div class="userAgreement">
-                    <check-icon :value.sync="checkUserAgreement">我已阅读并同意《注册服务协议》</check-icon>
+                    <check-icon :value.sync="checkUserAgreement">我已阅读并同意<router-link to="userAgreement">《注册服务协议》</router-link> </check-icon>
                 </div>
-                <div class="registerButton"><x-button :gradients="['#3237a6', '#7119d4']" round>立刻注册</x-button></div>
+                <div class="registerButton"><x-button :gradients="['#3237a6', '#7119d4']">立刻注册</x-button></div>
             </group>
         </div>
     </div>
@@ -27,8 +24,6 @@ export default {
     name : 'Register',
     data() {
         return {
-            topImg : require("../assets/image/login/top@3x.png"),
-            logoImg : require("../assets/image/login/logo.png"),
             checkUserAgreement : false
         }
     },
@@ -40,16 +35,6 @@ export default {
 <style scoped>
 .register {
     overflow: hidden;
-}
-.img{
-    width: 100vw;
-    position: absolute;
-}
-.logo{
-    width: 35vw;
-    position: absolute;
-    left: 33vw;
-    top: 22vw;
 }
 .form {
     margin-top: 65vw;

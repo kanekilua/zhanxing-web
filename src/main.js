@@ -10,6 +10,14 @@ import api from './api/api.js'
 import './assets/style/commonCss.css'
 import './assets/style/font.css'
 
+// 加载自定义公共组件
+import components from './components/' 
+Object.keys(components).forEach((key) => {
+  var name = key.replace(/(\w)/, (v) => v.toUpperCase()); //首字母大写
+  Vue.component(`v${name}`, components[key]);
+})
+
+
 // vux基础组件引用
 import { XButton } from 'vux'
 import { XInput } from 'vux'

@@ -1,18 +1,15 @@
 <template>
     <div class="login">
-        <div style="position:relative">
-            <img :src="topImg" alt="logoBackground" class="img">
-            <img :src="logoImg" alt="logo" class="logo">
-        </div>
+        <v-logo-header></v-logo-header>
         <div class="form">
             <group>
                 <x-input placeholder="请输入您的账号"></x-input>
                 <x-input placeholder="请输入您的密码"></x-input>
                 <div class="resetPassword">
-                    <a href="#">忘记密码?</a>
+                    <router-link to="resetPwd">忘记密码?</router-link>
                     <span>/立即注册</span>
                 </div>
-                <div class="loginButton"><x-button :gradients="['#3237a6', '#7119d4']" round>立刻登入</x-button></div>
+                <div class="loginButton"><x-button :gradients="['#3237a6', '#7119d4']">立刻登入</x-button></div>
             </group>
             <div class="externLink">
                 <img :src="qqImg" alt="qq">
@@ -27,8 +24,6 @@ export default {
     name : 'Login',
     data() {
         return {
-            topImg : require("../assets/image/login/top@3x.png"),
-            logoImg : require("../assets/image/login/logo.png"),
             qqImg : require("../assets/image/login/qq@3x.png"),
             sinaImg : require("../assets/image/login/sina@3x.png"),
             wechatImg : require("../assets/image/login/wechat@3x.png")
@@ -39,16 +34,6 @@ export default {
 <style scoped>
 .login {
     overflow: hidden;
-}
-.img{
-    width: 100vw;
-    position: absolute;
-}
-.logo{
-    width: 35vw;
-    position: absolute;
-    left: 33vw;
-    top: 22vw;
 }
 .form {
     margin-top: 65vw;
