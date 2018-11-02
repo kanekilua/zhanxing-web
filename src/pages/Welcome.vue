@@ -2,14 +2,13 @@
     <div class="welcome" :style="background">
         <div class="buttonGroup">
             <flexbox>
-                <flexbox-item><x-button :gradients="['#3237a6', '#7119d4']" link="login">登入</x-button></flexbox-item>
-                <flexbox-item><x-button class="signupButton" link="register">注册</x-button></flexbox-item>
+                <flexbox-item><x-button :gradients="loginGds" :style="loginStyle" @touchstart.native="loginStyleChange"  @touchend.native="jump('login')" >登入</x-button></flexbox-item>
+                <flexbox-item><x-button :gradients="registerGds" :style="registerStyle"  @touchstart.native="registerStyleChange"  @touchend.native="jump('register')"> 注册</x-button></flexbox-item>
             </flexbox>
         </div>
     </div>
 </template>
 <script>
-import { Flexbox,FlexboxItem } from 'vux'
 export default {
     name : 'welcome',
     data() {
@@ -17,12 +16,25 @@ export default {
             background : {
                 backgroundImage: "url(" + require("../assets/image/welcome/img@3x.png") + ")",
                 backgroundRepeat: "no-repeat"
-            }
+            },
+            loginGds : ['#ffffff', '#ffffff'],
+            registerGds : ['#ffffff', '#ffffff'],
+            loginStyle: "color: #10489B;",
+            registerStyle: "color: #10489B;"
         }
     },
-    components: {
-        Flexbox,
-        FlexboxItem
+    methods: {
+        loginStyleChange : function (e) {
+            this.loginGds = ['#3237a6', '#7119d4'];    
+            this.loginStyle = "color: #ffffff";
+        },
+        registerStyleChange : function (e) {
+            this.registerGds = ['#3237a6', '#7119d4'];    
+            this.registerStyle = "color: #ffffff";
+        },
+        jump : function(path) {
+            this.$router.push(path);
+        }
     }
 }
 </script>
@@ -45,6 +57,11 @@ export default {
     margin-left: auto;
     margin-right: auto;
     margin-top : 78vh;
+}
+.buttonGroup >>> .weui-btn {
+    border-radius: 10px;
+    height: 40px;
+    font-size: 14px;
 }
 </style>
 

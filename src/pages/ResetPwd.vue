@@ -50,4 +50,8 @@ export default {
 .form >>> .weui-btn {
     border-radius: 25px;
 }
+.confirmButton >>> .weui-btn {
+    font-size: 14px;
+    height: 40px;
+}
 </style>

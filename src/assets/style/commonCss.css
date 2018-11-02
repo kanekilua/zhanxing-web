@@ -4,7 +4,7 @@ html,body,#app {
     font-family: pfzt;
 }
 a:link,a:visited,a:hover,a:active {
-    color: #10489B;
+    color: #dbdbdb;
     text-decoration: none;
 }
 .weui-btn{
@@ -18,4 +18,19 @@ a:link,a:visited,a:hover,a:active {
 }
 .weui-cell::before {
     border-top : 0px !important;
+}
+.weui-cells::after {
+    border-bottom : 0px !important;
+}
+.weui-cell::after {
+    border-bottom : 0px !important;
+}
+.weui-input::-moz-placeholder {
+    color: #dbdbdb;
+}
+.weui-input:-ms-input-placeholder {
+color: #dbdbdb;
+}
+.weui-input::-webkit-input-placeholder {
+color: #dbdbdb;
 }

@@ -19,13 +19,12 @@ Object.keys(components).forEach((key) => {
 
 
 // vux基础组件引用
-import { XButton } from 'vux'
-import { XInput } from 'vux'
-import { Group } from 'vux'
+import { XButton,XInput,Group,Flexbox, FlexboxItem } from 'vux'
 Vue.component('x-button', XButton)
 Vue.component('x-input', XInput)
 Vue.component('group', Group)
-
+Vue.component('flexbox', Flexbox)
+Vue.component('flexbox-item', FlexboxItem)
 
 Vue.config.productionTip = false;
 Vue.prototype.$http =api;

@@ -48,6 +48,12 @@ export default {
 .userAgreement {
     margin-top : 15px;
 }
+a:link,a:visited  {
+    color: #dbdbdb;
+}
+a:hover,a:active {
+    color: #10489B;
+}
 .form >>> .weui-cells {
     font-size : 14px;
 }
@@ -62,6 +68,10 @@ export default {
 .form >>> .weui-btn {
     border-radius: 25px;
 }
+.registerButton >>> .weui-btn {
+    font-size: 14px;
+    height: 40px;
+}
 .userAgreement >>> .weui-icon-circle {
     font-size: 17px;
 }
@@ -71,6 +81,10 @@ export default {
 }
 .userAgreement >>> .vux-check-icon > .weui-icon-success:before, .vux-check-icon > .weui-icon-success-circle:before {
     color: #4333BF;
+}
+
+.userAgreement >>> .vux-check-icon > span {
+    color: #dbdbdb;
 }
 </style>
 
