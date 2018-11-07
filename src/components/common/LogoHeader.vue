@@ -9,7 +9,7 @@ export default {
     name : "LogoHeader",
     data() {
         return {
-            topImg : require("../../assets/image/logo-header/top@3x.png"),
+            topImg : require("../../assets/image/logo-header/top@2x.png"),
             logoImg : require("../../assets/image/logo-header/logo.png")
         }
     }
