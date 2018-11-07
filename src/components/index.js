@@ -1,3 +1,7 @@
 import TitleHeader from './common/TitleHeader'
 import LogoHeader from './common/LogoHeader'
-export default { TitleHeader,LogoHeader }
+import ActiveHeader from './common/ActiveHeader'
+export default { TitleHeader,LogoHeader,ActiveHeader }
+
+// import '../assets/style/ljqCommon.less'
+
