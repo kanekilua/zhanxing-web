@@ -29,11 +29,13 @@ Vue.component('flexbox-item', FlexboxItem)
 Vue.config.productionTip = false;
 Vue.prototype.$http =api;
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
-})
+document.addEventListener('deviceready', function() {
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
+  })
+}, false);
+
