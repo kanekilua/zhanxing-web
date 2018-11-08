@@ -9,6 +9,9 @@ import api from './api/api.js'
 // style样式引用
 import './assets/style/commonStyle.less'
 
+// 外部js的引用
+import rem from '../static/js/script/rem'
+
 // 加载自定义公共组件
 import components from './components/' 
 Object.keys(components).forEach((key) => {
