@@ -6,9 +6,8 @@ import router from './router'
 import store from './store'
 import api from './api/api.js'
 
-// css引用
-import './assets/style/commonCss.css'
-import './assets/style/font.css'
+// style样式引用
+import './assets/style/commonStyle.less'
 
 // 加载自定义公共组件
 import components from './components/' 

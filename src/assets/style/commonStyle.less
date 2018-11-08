@@ -4,8 +4,14 @@ html,body,#app {
     font-family: pfzt;
 }
 a:link,a:visited,a:hover,a:active {
-    color: #dbdbdb;
+    color: @inputColor;
     text-decoration: none;
+}
+@font-face {  
+    /* 重命名字体名 */
+    font-family: pfzt;  
+    /* 引入字体 */
+    src: url('../../../static/font/PFZT-CG.ttf');
 }
 .weui-btn{
     font-family: pfzt;
@@ -26,11 +32,11 @@ a:link,a:visited,a:hover,a:active {
     border-bottom : 0px !important;
 }
 .weui-input::-moz-placeholder {
-    color: #dbdbdb;
+    color: @inputColor;
 }
 .weui-input:-ms-input-placeholder {
-color: #dbdbdb;
+    color: @inputColor;
 }
 .weui-input::-webkit-input-placeholder {
-color: #dbdbdb;
+    color: @inputColor;
 }
