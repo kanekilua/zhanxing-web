@@ -35,8 +35,6 @@ export default {
 </script>
 
 <style lang="less">
-@import '../assets/style/ljqCommon.less';
-
 .birth{
     background: #fff;
     .birth-form{

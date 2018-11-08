@@ -10,7 +10,7 @@ import api from './api/api.js'
 import './assets/style/commonStyle.less'
 
 // 外部js的引用
-import rem from '../static/js/script/rem'
+import rem from '../static/js/rem'
 
 // 加载自定义公共组件
 import components from './components/' 
