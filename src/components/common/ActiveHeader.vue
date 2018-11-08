@@ -1,6 +1,6 @@
 <template>
-    <nav class="active-nav" v-swipeleft="Swipeleft">
-        <h2 class="nav-title">{{navTitle}}</h2>
+    <nav :class="isDown?'down-nav':'up-nav'"  v-touch:down="downNav" v-touch:up="upNav">
+        <h2 class="nav-title" >{{navTitle}}</h2>
     </nav>
 </template>
 
@@ -8,22 +8,24 @@
 export default {
     data () {
         return{
-            
+            isDown: true
         }
     },
-    props: [
-        'navTitle'
-    ],
+    props: ['navTitle'],
     methods: {
-        Swipeleft: function() {
-            console.log(111)
+        downNav: function() {
+           this.data.isDown = false
+        },
+        upNav: function () {
+            this.data.isDown = true
         }
     }
 }
 </script>
 
-<style lang="less">
-    .active-nav{
+<style lang="less" scoped>
+    .nav,
+    .down-nav{
         width: 100%;
         height: 160/75rem;
         line-height: 140/75rem;

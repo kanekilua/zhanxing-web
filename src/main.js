@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 import api from './api/api.js'
-import rem from './assets/script/rem.js'
-// 引入滑动js
-import {tap,swipeleft,swiperight,press} from './assets/script/touchvue.js'
+import rem from '../static/js/rem.js'
+import touch from 'vue-directive-touch'
+
+Vue.use(touch)
 
 // css引用
 import './assets/style/commonCss.css'
