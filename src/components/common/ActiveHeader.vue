@@ -1,24 +1,12 @@
 <template>
-    <nav class="active-nav" v-swipeleft="Swipeleft">
+    <nav class="active-nav">
         <h2 class="nav-title">{{navTitle}}</h2>
     </nav>
 </template>
 
 <script>
 export default {
-    data () {
-        return{
-            
-        }
-    },
-    props: [
-        'navTitle'
-    ],
-    methods: {
-        Swipeleft: function() {
-            console.log(111)
-        }
-    }
+    props: ['navTitle']
 }
 </script>
 

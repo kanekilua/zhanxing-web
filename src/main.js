@@ -5,13 +5,13 @@ import App from './App'
 import router from './router'
 import store from './store'
 import api from './api/api.js'
-import rem from './assets/script/rem.js'
-// 引入滑动js
-import {tap,swipeleft,swiperight,press} from './assets/script/touchvue.js'
 
 // css引用
 import './assets/style/commonCss.css'
 import './assets/style/font.css'
+
+// 外部js的引用
+import rem from '../static/js/script/rem'
 
 // 加载自定义公共组件
 import components from './components/' 
