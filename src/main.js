@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import store from './store'
 import api from './api/api.js'
-import rem from '../static/js/rem.js'
 import touch from 'vue-directive-touch'
 
 Vue.use(touch)
@@ -15,7 +14,7 @@ import './assets/style/commonCss.css'
 import './assets/style/font.css'
 
 // 外部js的引用
-import rem from '../static/js/script/rem'
+import rem from '../static/js/rem'
 
 // 加载自定义公共组件
 import components from './components/' 

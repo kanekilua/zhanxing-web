@@ -6,14 +6,14 @@
             <input type="text" class="input-name" placeholder="请输入您的名字">
             <div class="gender">
                 <div class="male">
-                    <input type="radio" id="male" name='gender'>
+                    <input type="radio" id="male" name='gender' checked>
                     <label for="male"></label>
-                    <div>男</div>
+                    <div class="gender-txt">男</div>
                 </div>
                 <div class="female">
                     <input type="radio" id="female" name='gender'>
                     <label for="female"></label>
-                    <div>女</div>
+                    <div  class="gender-txt">女</div>
                 </div>
             </div>
             <input type="text" class="input-born" placeholder="请选择您的出生日期">
@@ -62,6 +62,8 @@ export default {
         border-bottom: 1px solid #eee; 
         font-weight: 400;
         font-size: 34/75rem;
+        font-family:PingFang SC;
+        font-weight:400;
         color:rgba(0,0,0,1);
     }
     .input-born{
@@ -85,13 +87,33 @@ export default {
             margin-right: 40/75rem;
             border: 1px solid #eee;
         }
-        input[type="radio"]:checked  + label{
-            background: red;
-        //    background: url('../../assets/image/birth/man.png') no-repeat center center / 100% 100%;
+        input[id="male"]:checked  + label{
+           background: url('../assets/image/birth/man.png') no-repeat center center / 100% 100%;
+           & + div{
+                color:rgba(0,0,0,1);
+                opacity:0.8;
+           }
         }
+        input[id="female"]:checked  + label{
+           background: url('../assets/image/birth/woman.png') no-repeat center center / 100% 100%;
+           & + div{
+                color:rgba(0,0,0,1);
+                opacity:0.8;
+           }
+        }
+        .gender-txt{
+            color:rgba(0,0,0,1);
+                opacity:0.2;
+        }
+
+        
     }
     #save-confirm{
+        width: 504/75rem;
+        height: 90/75rem;
         border-radius: 40/75rem;
+        font-size: 28/75rem;
+        font-family:PingFang SC
     }
 
 }
