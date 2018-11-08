@@ -14,6 +14,9 @@ Vue.use(touch)
 import './assets/style/commonCss.css'
 import './assets/style/font.css'
 
+// 外部js的引用
+import rem from '../static/js/script/rem'
+
 // 加载自定义公共组件
 import components from './components/' 
 Object.keys(components).forEach((key) => {

@@ -3,5 +3,3 @@ import LogoHeader from './common/LogoHeader'
 import ActiveHeader from './common/ActiveHeader'
 export default { TitleHeader,LogoHeader,ActiveHeader }
 
-// import '../assets/style/ljqCommon.less'
-
