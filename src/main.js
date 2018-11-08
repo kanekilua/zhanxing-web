@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import store from './store'
 import api from './api/api.js'
+import touch from 'vue-directive-touch'
+
+Vue.use(touch)
 
 // style样式引用
 import './assets/style/commonStyle.less'

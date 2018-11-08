@@ -1,17 +1,35 @@
 <template>
-    <nav class="active-nav">
-        <h2 class="nav-title">{{navTitle}}</h2>
+    <nav class="nav" :class="isDown?downnav:upnav"  v-touch:down="downNav" v-touch:up="upNav">
+        <h2 class="nav-title" >{{navTitle}}</h2>
     </nav>
 </template>
 
 <script>
 export default {
-    props: ['navTitle']
+    data () {
+        return{
+            downnav: 'down-nav',
+            upnav: 'up-nav',
+            isDown: true
+        }
+    },
+    props: ['navTitle'],
+    methods: {
+        downNav: function() {
+           this.isDown = true
+           console.log(this.isDown)
+        },
+        upNav: function () {
+            this.isDown = false
+           console.log(this.isDown)
+
+        }
+    }
 }
 </script>
 
-<style lang="less">
-    .active-nav{
+<style lang="less" scoped>
+    .nav{
         width: 100%;
         height: 160/75rem;
         line-height: 140/75rem;
@@ -21,6 +39,9 @@ export default {
             margin-left: 40/75rem;
             font-size: 40/75rem;
         }
+    }
+    .up-nav{
+        transform: translateY()
     }
 </style>
 
