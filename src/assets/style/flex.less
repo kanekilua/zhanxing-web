@@ -80,6 +80,64 @@
     align-items:center;
 }
 
+.flex-around {
+    display:-webkit-box;
+    display:-webkit-flex; 
+    display:-moz-box; 
+    display:-ms-flexbox; 
+    display:flex;
+
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    -ms-justify-content: space-around;
+    -o-justify-content: space-around;
+    justify-content: space-around;
+
+    -webkit-align-items:center;
+    -moz-align-items:center;
+    -ms-align-items:center;
+    -o-align-items:center;
+    align-items:center;
+}
+
+.flex-col {
+    display:-webkit-box;
+    display:-webkit-flex; 
+    display:-moz-box; 
+    display:-ms-flexbox; 
+    display:flex;
+
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    -ms-justify-content: space-around;
+    -o-justify-content: space-around;
+    justify-content: space-around;
+
+    -webkit-align-items:center;
+    -moz-align-items:center;
+    -ms-align-items:center;
+    -o-align-items:center;
+    align-items:center;
+
+    flex-direction: column;
+}
+
+.flex-col-only {
+    display:-webkit-box;
+    display:-webkit-flex; 
+    display:-moz-box; 
+    display:-ms-flexbox; 
+    display:flex;
+
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    -ms-justify-content: space-around;
+    -o-justify-content: space-around;
+    justify-content: space-around;
+
+    flex-direction: column;
+}
+
 .flex-between-only{
     display:-webkit-box;
     display:-webkit-flex; 
@@ -141,3 +199,10 @@
     -o-align-items:center;
     align-items:center;
 }
+
+.flex(@index:1){
+    -webkit-box-flex: @index;
+    -webkit-flex: @index;
+    flex: @index;
+}
+

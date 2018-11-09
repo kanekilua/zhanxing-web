@@ -42,3 +42,8 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+// 自定义路由方法
+Vue.prototype.$jump = function(index) {
+  this.$router.push(index);
+}
