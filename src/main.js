@@ -9,10 +9,14 @@ import touch from 'vue-directive-touch'
 
 Vue.use(touch)
 
-// style样式引用
+// 引用公共样式style
 import './assets/style/commonStyle.less'
 
-// 外部js的引用
+// 引用公共js
+import utils from './assets/js/utils'
+Vue.prototype.$utils = utils;
+
+// 引用外部js
 import rem from '../static/js/rem'
 
 // 加载自定义公共组件
@@ -33,6 +37,11 @@ Vue.component('flexbox-item', FlexboxItem)
 
 Vue.config.productionTip = false;
 Vue.prototype.$http =api;
+
+// 自定义路由跳转方法
+Vue.prototype.$jump = function(index) {
+  this.$router.push(index);
+}
 
 /* eslint-disable no-new */
 new Vue({

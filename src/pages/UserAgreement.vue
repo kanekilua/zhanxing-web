@@ -29,15 +29,15 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
 .content {
     text-align: center;
-    margin: 4vw auto;
-    width: 80vw;
-}
-p {
-    text-indent: 2em;
-    font-size: 15px;
+    margin: 24/75rem auto;
+    width: 646/75rem;
+    p {
+        text-indent: 2em;
+        font-size: 26/75rem;
+    }
 }
 </style>
 

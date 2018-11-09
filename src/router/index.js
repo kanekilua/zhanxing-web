@@ -12,7 +12,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path : '/welcome',
+      path : '/',
       name : 'welcome',
       component : Welcome
     },
@@ -37,7 +37,7 @@ export default new Router({
       component : UserAgreement
     },
     {
-      path : '/',
+      path : '/birth',
       name : 'birth',
       component : Birth
     }

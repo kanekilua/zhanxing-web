@@ -1,67 +1,64 @@
 <template>
-    <div class="welcome" :style="background">
+    <div class="welcome">
         <div class="buttonGroup">
-            <flexbox>
-                <flexbox-item><x-button :gradients="loginGds" :style="loginStyle" @touchstart.native="loginStyleChange"  @touchend.native="jump('login')" >登入</x-button></flexbox-item>
-                <flexbox-item><x-button :gradients="registerGds" :style="registerStyle"  @touchstart.native="registerStyleChange"  @touchend.native="jump('register')"> 注册</x-button></flexbox-item>
-            </flexbox>
+            <x-button :gradients="loginGds" :style="{color:loginColor}" @touchstart.native="loginStyleChange"  @touchend.native="$jump('login')" >登入</x-button>
+            <div></div>
+            <x-button :gradients="registerGds" :style="{color:registerColor}"  @touchstart.native="registerStyleChange"  @touchend.native="$jump('register')">注册</x-button>
         </div>
     </div>
 </template>
 <script>
+import {mapState} from 'vuex';
+
 export default {
     name : 'welcome',
+    computed :{
+        ...mapState(['linkColor','gradientStart','gradientEnd'])
+    },
+    mounted : function (){
+        this.loginColor = this.linkColor;
+        this.registerColor = this.linkColor;
+    },
     data() {
         return {
-            background : {
-                backgroundImage: "url(" + require("../assets/image/welcome/img@3x.png") + ")",
-                backgroundRepeat: "no-repeat"
-            },
-            loginGds : ['#ffffff', '#ffffff'],
-            registerGds : ['#ffffff', '#ffffff'],
-            loginStyle: "color: #10489B;",
-            registerStyle: "color: #10489B;"
+            loginGds : ['#fff', '#fff'],
+            registerGds : ['#fff', '#fff'],
+            loginColor : '',
+            registerColor : ''
         }
     },
     methods: {
         loginStyleChange : function (e) {
-            this.loginGds = ['#3237a6', '#7119d4'];    
-            this.loginStyle = "color: #ffffff";
+            this.loginGds = [this.gradientStart, this.gradientEnd];    
+            this.loginColor = "#fff";
         },
         registerStyleChange : function (e) {
-            this.registerGds = ['#3237a6', '#7119d4'];    
-            this.registerStyle = "color: #ffffff";
-        },
-        jump : function(path) {
-            this.$router.push(path);
+            this.registerGds = [this.gradientStart, this.gradientEnd];    
+            this.registerColor = "#fff";
         }
     }
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
 .welcome{
-    width: 100% ;
+    width: 100%;
     height: 100%;
-    background-size:cover;
-    -webkit-background-size: cover; 
-    -moz-background-size: cover; 
-    -o-background-size: cover;
-    /* 防止因为margin-top造成的css hack*/
-    overflow: hidden;
-}
-.signupButton {
-    color: #10489B;
-}
-.buttonGroup {
-    width: calc(100% - 30px) ;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top : 78vh;
-}
-.buttonGroup >>> .weui-btn {
-    border-radius: 10px;
-    height: 40px;
-    font-size: 14px;
+    background: url("../assets/image/welcome/img@3x.png") no-repeat center center / 100% 100%;
+    .buttonGroup {
+        .flex-between();
+        position: absolute;
+        width: 95%;
+        left: 0;
+        right: 0;
+        bottom: 187/75rem;
+        margin : 0 auto;
+        /deep/ .weui-btn {
+            .round(10px);
+            width: 48%;
+            height: 116/75rem;
+            font-size: 28/75rem;
+        }
+    }
 }
 </style>
 
