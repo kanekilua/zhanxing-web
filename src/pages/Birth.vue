@@ -43,7 +43,7 @@ export default {
         margin: 100/75rem auto 0 auto;
         box-sizing: border-box;
         padding: 50/75rem;
-        border-radius: 50/75rem;
+        .round(50/75rem);
         background: #fff;
         box-shadow: 0 10/75rem 10/75rem #eee;
     }
@@ -81,7 +81,7 @@ export default {
         input[type="radio"] + label{
             width: 44/75rem;
             height: 44/75rem;
-            border-radius: 50%;
+            .round(50%);
             margin-right: 40/75rem;
             border: 1px solid #eee;
         }
