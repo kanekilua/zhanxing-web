@@ -1,18 +1,14 @@
 <template>
     <div class="header">
+        <div @click="back"><img src="../../assets/image/title-header/icon.png" alt="logoBackground" class="icon"></div>
         <div class="title">{{title}}</div>
-        <div @click="back"><img :src="backIcon" alt="logoBackground" class="img"></div>
+        <div class="icon"></div>
     </div>
 </template>
 <script>
 export default {
     name : 'TitleHeader',
     props : ['title'],
-    data () {
-        return {
-            backIcon : require("../../assets/image/title-header/icon.png"),
-        }
-    },
     methods : {
         back : function () {
             this.$router.go(-1);
@@ -20,33 +16,19 @@ export default {
     }
 }
 </script>
-<style scoped>
-.userAgreement {
-    overflow: hidden;
-}
+<style lang="less" scoped>
 .header {
-    padding: 3vw 4vw 3vw 4vw;
+    .flex-between();
+    height: 88/75rem;
+    padding:0 32/75rem 0 32/75rem;
+    border-bottom: 1px #eee solid;
     font-weight: bold;
-    font-size: 20px;
-    position: relative;
-    height: 8vw;
-    border-bottom: 1px #eeeeee solid;
-    color : #333333;
-}
-.img {
-    width: 22px;
-    height: 22px;
-    margin-top: 3px;
-    position: relative;
-}
-.title {
-    margin:0 auto;
-    width: calc(100% - 8vw);
-    position:absolute;
-    text-align: center;
-}
-.header >>> .vux-x-icon {
-    fill: white;
+    font-size: 34/75rem;
+    color : #333;
+    .icon {
+        width: 44/75rem;
+        height: 44/75rem;
+    }
 }
 </style>
 

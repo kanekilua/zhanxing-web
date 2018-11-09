@@ -14,6 +14,8 @@
             <p>本应用有权在必要时修改服务条例，本应用的服务条例一旦发生变动，将会在本应用的重要页面上提示修改内容，用户如不同意新的修改内容，须立即停止使用本协议约定的服务，否则视为用户完全同意并接受新的修改内容。根据客观情况及经营方针的变化，本应用有中断或停止服务的权利，用户对此表示理解并完全认同。</p>
             <br>
             <p>如果您还有其他问题和建议，可以通过电子邮件service@szmonster.com联系我们。</p>
+            <br>
+            <br>
         </div>
     </div>
 </template>
@@ -27,15 +29,15 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
 .content {
     text-align: center;
-    margin: 4vw auto;
-    width: 80vw;
-}
-p {
-    text-indent: 2em;
-    font-size: 15px;
+    margin: 24/75rem auto;
+    width: 646/75rem;
+    p {
+        text-indent: 2em;
+        font-size: 26/75rem;
+    }
 }
 </style>
 

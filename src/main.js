@@ -5,10 +5,19 @@ import App from './App'
 import router from './router'
 import store from './store'
 import api from './api/api.js'
+import touch from 'vue-directive-touch'
 
-// css引用
-import './assets/style/commonCss.css'
-import './assets/style/font.css'
+Vue.use(touch)
+
+// 引用公共样式style
+import './assets/style/commonStyle.less'
+
+// 引用公共js
+import utils from './assets/js/utils'
+Vue.prototype.$utils = utils;
+
+// 引用外部js
+import rem from '../static/js/rem'
 
 // 加载自定义公共组件
 import components from './components/' 
@@ -29,6 +38,11 @@ Vue.component('flexbox-item', FlexboxItem)
 Vue.config.productionTip = false;
 Vue.prototype.$http =api;
 
+// 自定义路由跳转方法
+Vue.prototype.$jump = function(index) {
+  this.$router.push(index);
+}
+
 document.addEventListener('deviceready', function() {
   new Vue({
     el: '#app',
@@ -38,4 +52,3 @@ document.addEventListener('deviceready', function() {
     template: '<App/>'
   })
 }, false);
-

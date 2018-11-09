@@ -5,18 +5,22 @@
             <group>
                 <x-input placeholder="请输入您的手机号"></x-input>
                 <x-input placeholder="请输入您的验证码">
-                    <x-button slot="right" :gradients="['#3237a6', '#7119d4']" mini>获取验证码</x-button>
+                    <x-button slot="right" :gradients="[this.gradientStart, this.gradientEnd]" mini>获取验证码</x-button>
                 </x-input>
                 <x-input placeholder="请设置您的密码"></x-input>
                 <x-input placeholder="请再次确认您的密码"></x-input>
-                <div class="confirmButton"><x-button :gradients="['#3237a6', '#7119d4']">确认</x-button></div>
+                <div class="confirmButton"><x-button :gradients="[this.gradientStart, this.gradientEnd]">确认</x-button></div>
             </group>
         </div>
     </div>
 </template>
 <script>
+import {mapState} from 'vuex';
 export default {
     name : 'ResetPwd',
+    computed :{
+        ...mapState(['gradientStart','gradientEnd'])
+    },
     data() {
         return {
             title : '忘记密码'
@@ -24,34 +28,13 @@ export default {
     }
 }
 </script>
-<style scoped>
-.resetPwd {
-    overflow: hidden;
-}
+<style lang="less" scoped>
 .form {
-    width: 75vw;
-    margin : 0 auto;
-    margin-top : 10vw;
+    .loginForm();
 }
-.confirmButton {
-    margin-top: 12vw;
-}
-.header >>> .vux-x-icon {
-    fill: white;
-}
-.weui-cell >>> .weui-input {
-    height: 3.411765em;
-    border-bottom: 1px solid #dbdbdb;
-    font-size: 15px;
-}
-.form >>> .weui-cell {
-    padding: 10px 0 0 0;
-}
-.form >>> .weui-btn {
-    border-radius: 25px;
-}
-.confirmButton >>> .weui-btn {
-    font-size: 14px;
-    height: 40px;
+.weui-cell /deep/ .weui-btn {
+    margin-top: 0;
+    height: 60/75rem;
+    font-size: 28/75rem;
 }
 </style>

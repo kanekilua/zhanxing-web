@@ -5,6 +5,7 @@ import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import ResetPwd from '@/pages/ResetPwd'
 import UserAgreement from '@/pages/UserAgreement'
+import Birth from '@/pages/Birth'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path : '/userAgreement',
       name : 'userAgreement',
       component : UserAgreement
+    },
+    {
+      path : '/birth',
+      name : 'birth',
+      component : Birth
     }
   ]
 })
