@@ -42,10 +42,10 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../../zhanxing/www'),
-    assetsSubDirectory: '',
+    assetsSubDirectory: 'static',
     assetsPublicPath: '',
 
-    /**
+    /** 
      * Source Maps
      */
 
