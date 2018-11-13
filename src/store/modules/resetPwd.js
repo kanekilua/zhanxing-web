@@ -3,7 +3,8 @@ export default {
     state : {
         phone : '',
         captcha : '',
-        password : ''
+        password : '',
+        passwordComfirm : ''
     },
     mutations :{
         updatePhone (state,value) {
@@ -15,10 +16,14 @@ export default {
         updatePassword (state,value) {
             state.password = value;
         },
+        updatePasswordComfirm (state,value) {
+            state.passwordComfirm = value;
+        },
         clear (state) {
             state.phone = "";
             state.captcha = "";
             state.password = "";
+            state.passwordComfirm = "";
         }
     },
     actions : {
@@ -26,7 +31,7 @@ export default {
             let postData = {mobile : state.phone};
             vue.$http ({
                 method : 'POST',
-                url : '/register',
+                url : '/changepwd',
                 data : postData
             })
             .then(function (result) {
@@ -40,8 +45,8 @@ export default {
                 vue.$vux.toast.text('' + err,'top');
             });
         },
-        register ({commit,state},vue) {
-            const SUBMIT_EVENT = 'register';
+        resetPwd ({state},vue) {
+            const SUBMIT_EVENT = 'changepwd';
             let postData = {
                 mobile : state.phone,
                 password : state.password,
@@ -56,8 +61,8 @@ export default {
             .then(function (result) {
                 let json = result.data;
                 if(json.code === "success") {
-                    commit('UPDATE_LOGIN_ACCOUNT',state.phone,{root:true});
-                    vue.$jump('birth');
+                    vue.$vux.toast.text(json.msg,'top');
+                    vue.$jump('login');
                 }else {
                     vue.$vux.toast.text(json.msg,'top');
                 }

@@ -12,28 +12,21 @@ import {mapState} from 'vuex';
 
 export default {
     name : 'welcome',
-    computed :{
-        ...mapState(['linkColor','gradientStart','gradientEnd'])
-    },
-    mounted : function (){
-        this.loginColor = this.linkColor;
-        this.registerColor = this.linkColor;
-    },
     data() {
         return {
             loginGds : ['#fff', '#fff'],
             registerGds : ['#fff', '#fff'],
-            loginColor : '',
-            registerColor : ''
+            loginColor : global.LINKCOLOR,
+            registerColor : global.LINKCOLOR 
         }
     },
     methods: {
         loginStyleChange : function (e) {
-            this.loginGds = [this.gradientStart, this.gradientEnd];    
+            this.loginGds = [global.GRADIENT_START, global.GRADIENT_END];    
             this.loginColor = "#fff";
         },
         registerStyleChange : function (e) {
-            this.registerGds = [this.gradientStart, this.gradientEnd];    
+            this.registerGds = [global.GRADIENT_START, global.GRADIENT_END];    
             this.registerColor = "#fff";
         }
     }
