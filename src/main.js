@@ -20,6 +20,7 @@ Vue.prototype.$utils = utils;
 // 引用外部js
 import rem from '../static/js/rem'
 
+
 // 加载自定义公共组件
 import components from './components/' 
 Object.keys(components).forEach((key) => {
@@ -29,14 +30,13 @@ Object.keys(components).forEach((key) => {
 
 
 // vux基础组件引用
-import { XButton,XInput,Group,Flexbox, FlexboxItem,Swiper,SwiperItem } from 'vux'
+import { XButton,XInput,Group,Flexbox, FlexboxItem} from 'vux'
 Vue.component('x-button', XButton)
 Vue.component('x-input', XInput)
 Vue.component('group', Group)
 Vue.component('flexbox', Flexbox)
-Vue.component('flexbox-item', FlexboxItem)
-Vue.component('swiper', Swiper)
-Vue.component('swiper-item', SwiperItem)
+
+
 
 Vue.config.productionTip = false;
 Vue.prototype.$http =api;
@@ -52,7 +52,10 @@ new Vue({
   router,
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  data: {
+    eventHub: new Vue() // 使用集中的事件处理器,一劳永逸的在任何组件调用事件发射、接受的方法
+  }
 })
 
 // 自定义路由方法

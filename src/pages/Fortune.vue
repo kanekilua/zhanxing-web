@@ -16,41 +16,16 @@
            </div>
        </div>
 
-       <!-- <div class="fortune-nav">
-           <router-link :to="{ path:'/main/fortune/todayFortune'}" tag="div" class="fortune-nav-item" active-class="navActive">今日运程</router-link>
-           <router-link :to="{ path:'/main/fortune/monthFortune'}" tag="div" class="fortune-nav-item" active-class="navActive">本月运程</router-link>
-           <router-link :to="{ path:'/main/fortune/yearFortune'}" tag="div" class="fortune-nav-item" active-class="navActive">2019运程</router-link>
-       </div>
-       <div v-touch:left ="slideForward"  v-touch:right ="slideBack">
-            <transition :name="transitionName">
-                <keep-alive>
-                    <router-view></router-view>
-                </keep-alive>              
-            </transition>   
-        </div>  -->
-        <div class="nav-fortune">
-            <div class="nav-item" v-for="(navItem, index) in navList" :key="index" :class="navActive">{{navItem.title}}</div>
-        </div>
-         <swiper height=600px :show-dots=false  @on-index-change="onSwiperItemIndexChange">
-            <swiper-item class="black"><today-fortune></today-fortune></swiper-item>
-            <swiper-item class="black"><month-fortune></month-fortune></swiper-item>
-            <swiper-item class="black"><year-fortune></year-fortune></swiper-item>
-        </swiper>
+      
+        <v-nav></v-nav>
+        <v-swiper></v-swiper>
     </div>
 </template>
 
 <script>
-import { Swiper } from 'vux'
-import TodayFortune from './TodayFortune'
-import MonthFortune from './MonthFortune'
-import YearFortune from './YearFortune'
+
+
 export default {
-    components: {
-        Swiper,
-        "today-fortune": TodayFortune,
-        "month-fortune": MonthFortune,
-        "year-fortune": YearFortune
-    },
     data () {
         return {
             avatar: require('../assets/image/fortune/avatar@2x.png'),
@@ -60,34 +35,12 @@ export default {
                 {title: "今日运程"},
                 {title: "本月运程"},
                 {title: "2019运程"}
-            ],
-            navActive: true 
+            ]
         }
     },
     methods: {
-         onSwiperItemIndexChange (index) {
-            console.log(index)
-            },
-    }
 
-    // watch: {  
-    //     $route (to, from) {
-    //         const arr = ['/main/fortune/todayFortune', '/main/fortune/monthFortune', '/main/fortune/yearFortune']
-    //         const compare = arr.indexOf(to.path) > arr.indexOf(from.path)
-    //         this.transitionName = compare ? 'slide-forward' : 'slide-back'
-    //     }
-    // },
-    // methods: {
-    //     slideForward: function() {
-    //         console.log("左滑")
-    //         this.transitionName = 'slide-forward'
-    //     },
-    //     slideBack: function() {
-    //         console.log("右滑")
-    //         this.transitionName = 'slide-back'
-    //     }
-    // }
-    
+    }
 }
 </script>
 
@@ -124,37 +77,8 @@ export default {
             }
         }
     }
-    .nav-fortune{
-        .flex-around();
-    }
-   
-
 }
 
-// router过度动画
-// 前进
-.slide-forward-enter {
-  transform: translate(100%);
-}
-.slide-forward-enter-active {
-  transition: all 0.5s ease-in-out;
-}
-.slide-forward-leave-active {
-  transform: translate(-100%);
-  transition: all  0.5s ease-in-out;
-}
-
-// 后退
-.slide-back-enter {
-  transform: translate(-100%);
-}
-.slide-back-enter-active {
-  transition: all 0.5s ease-in-out;
-}
-.slide-back-leave-active {
-  transform: translate(100%);
-  transition: all  0.5s ease-in-out;
-}
 
 
 
