@@ -1,6 +1,6 @@
 
 // 配置API接口地址
-var root = process.env.API
+var root = process.env.API_ROOT
  
 // 引用axios
 var axios = require('axios')
@@ -39,17 +39,13 @@ function apiAxios (method, url, params, success, failure) {
     withCredentials: false
   })
   .then(function (res) {
-    console.log(res);
-    return;
-    if (res.data.success === true) {
+    if (res.code === 'success') {
       if (success) {
         success(res.data)
       }
     } else {
       if (failure) {
-        failure(res.data)
-      } else {
-        window.alert('error: ' + JSON.stringify(res.data))
+        failure(res.msg)
       }
     }
   })

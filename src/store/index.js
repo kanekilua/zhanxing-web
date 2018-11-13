@@ -2,17 +2,23 @@ import Vue from 'vue'
 import vuex from 'vuex'
 Vue.use(vuex);
 
+import login from "./modules/login"
+import register from "./modules/register"
+import resetPwd from "./modules/resetPwd"
+
 export default new vuex.Store ({
     state : {
-        linkColor : '#10489B',
-        gradientStart : '#3237a6',
-        gradientEnd : '#7119d4',
-        inputColor : '#dbdbdb'
+        loginAccount : ''
     },
     modules : {
-
+        login : login,
+        register : register,
+        resetPwd : resetPwd
     },
     mutations: {
+        updateLoginAccount: function (state,value) {
+            state.loginAccount = value;
+        }
     },
     actions : {
     }
