@@ -7,6 +7,7 @@ import store from './store'
 import api from './api/api.js'
 import touch from 'vue-directive-touch'
 
+
 Vue.use(touch)
 
 // 引用公共样式style
@@ -28,12 +29,14 @@ Object.keys(components).forEach((key) => {
 
 
 // vux基础组件引用
-import { XButton,XInput,Group,Flexbox, FlexboxItem } from 'vux'
+import { XButton,XInput,Group,Flexbox, FlexboxItem,Swiper,SwiperItem } from 'vux'
 Vue.component('x-button', XButton)
 Vue.component('x-input', XInput)
 Vue.component('group', Group)
 Vue.component('flexbox', Flexbox)
 Vue.component('flexbox-item', FlexboxItem)
+Vue.component('swiper', Swiper)
+Vue.component('swiper-item', SwiperItem)
 
 Vue.config.productionTip = false;
 Vue.prototype.$http =api;

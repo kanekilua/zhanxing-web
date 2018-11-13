@@ -56,7 +56,8 @@ export default {
             return obj
         },
         replaceIco: function(name) {
-            this.isSelect = name;
+            this.isSelect = name
+            this.$emit("listenToChildEvent",this.isSelect)
         }
     }
 }
@@ -65,10 +66,11 @@ export default {
 <style lang="less">
     .tab-bar{
         width: 100%;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         z-index: 99;
+        background: #fff;
         .tab-bar-list{
             width: 100%;
             height: 110/75rem;

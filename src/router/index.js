@@ -15,6 +15,10 @@ import Fortune from '@/pages/Fortune'
 import Predict from '@/pages/Predict'
 import Mine from '@/pages/Mine'
 
+// fortune路由
+import TodayFortune from  '@/pages/TodayFortune'
+import MonthFortune from  '@/pages/MonthFortune'
+import YearFortune from  '@/pages/YearFortune'
 
 
 
@@ -60,11 +64,50 @@ export default new Router({
       name : 'main',
       component : Main,
       children: [
-        {path : "/main/home", name : "home", component: Home},
-        {path : "/main/master", name : "master", component: Master },
-        {path : "/main/fortune", name : "fortune", component: Fortune},
-        {path : "/main/predict", name : "predict", component: Predict},
-        {path : "/main/mine", name : "mine", component: Mine}
+        {
+          path : "/main/home",
+          name : "home",
+          component: Home
+        },
+        {
+          path : "/main/master",
+          name : "master",
+          component: Master
+        },
+        {
+          path : "/main/fortune",
+          name : "fortune",
+          component: Fortune,
+          linkActiveClass: 'navActive',
+          redirect: '/main/fortune/todayFortune',
+          children: [
+            {
+              path: "/main/fortune/todayFortune",
+              name: "todayFortune",
+              component: TodayFortune
+            },
+            {
+              path: "/main/fortune/monthFortune",
+              name: "monthFortune",
+              component: MonthFortune
+            },
+            {
+              path: "/main/fortune/yearFortune",
+              name: "yearFortune",
+              component: YearFortune
+            }
+          ]
+        },
+        {
+          path : "/main/predict",
+          name : "predict",
+          component: Predict
+        },
+        {
+          path : "/main/mine",
+          name : "mine",
+          component: Mine
+        }
       ]
     }
 
