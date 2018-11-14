@@ -54,7 +54,7 @@ export default {
             };
             this.$http.post('/submit',postData,registerSuccess,null);
         },
-        registerSuccess : function (data) {
+        registerSuccess : function () {
             this.updateLoginAccount(this.phone);
             this.$jump('birth');
         }
