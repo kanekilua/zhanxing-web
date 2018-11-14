@@ -15,16 +15,12 @@
                </div>
            </div>
        </div>
-
-      
-        <v-nav></v-nav>
+        <v-nav :navList="navList"></v-nav>
         <v-swiper></v-swiper>
     </div>
 </template>
 
 <script>
-
-
 export default {
     data () {
         return {
@@ -32,14 +28,11 @@ export default {
             userName: "卿大海",
             birthday: "1887年11月9日凌晨1:00",
             navList: [
-                {title: "今日运程"},
-                {title: "本月运程"},
-                {title: "2019运程"}
+                {name: "今日运程"},
+                {name: "本月运程"},
+                {name: "2019运程"}
             ]
         }
-    },
-    methods: {
-
     }
 }
 </script>
@@ -78,9 +71,5 @@ export default {
         }
     }
 }
-
-
-
-
 </style>
 

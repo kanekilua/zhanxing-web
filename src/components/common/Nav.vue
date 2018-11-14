@@ -12,14 +12,10 @@
    export default {
     data() {
       return {
-        navList: [
-          {name: '今日运程'},
-          {name: '本月运程'},
-          {name: '2019运程'}
-        ],
         nowIndex: 0
       }
     },
+    props : ['navList'],
     mounted() {
       this.$nextTick(() => {
         // 初始化，保证刷新页面后内容区和导航键一致

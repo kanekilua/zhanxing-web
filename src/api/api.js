@@ -1,34 +1,36 @@
+import Vue from 'vue'
+import { ToastPlugin } from 'vux'
+Vue.use(ToastPlugin)
 
 // 配置API接口地址
-var root = process.env.API
+var root = process.env.API_ROOT;
  
 // 引用axios
-var axios = require('axios')
+var axios = require('axios');
 // 自定义判断元素类型JS
 function toType (obj) {
-  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 }
 // 参数过滤函数
 function filterNull (o) {
   for (var key in o) {
     if (o[key] === null) {
-      delete o[key]
+      delete o[key];
     }
     if (toType(o[key]) === 'string') {
-      o[key] = o[key].trim()
+      o[key] = o[key].trim();
     } else if (toType(o[key]) === 'object') {
-      o[key] = filterNull(o[key])
+      o[key] = filterNull(o[key]);
     } else if (toType(o[key]) === 'array') {
-      o[key] = filterNull(o[key])
+      o[key] = filterNull(o[key]);
     }
   }
-  return o
+  return o;
 }
- 
  
 function apiAxios (method, url, params, success, failure) {
   if (params) {
-    params = filterNull(params)
+    params = filterNull(params);
   }
   axios({
     method: method,
@@ -39,36 +41,32 @@ function apiAxios (method, url, params, success, failure) {
     withCredentials: false
   })
   .then(function (res) {
-    console.log(res);
-    return;
-    if (res.data.success === true) {
+    if (res.data.code === 'success') {
       if (success) {
-        success(res.data)
+        success(res.data.data);
       }
     } else {
       if (failure) {
-        failure(res.data)
-      } else {
-        window.alert('error: ' + JSON.stringify(res.data))
+        failure(res.data.msg);
+      }else {
+        Vue.$vux.toast.text(res.data.msg,'top');
+        return;
       }
     }
   })
-  .catch(function (err) {
-    let res = err.response
-    if (err) {
-      window.alert('api error, HTTP CODE: ' + res.status)
-      return
-    }
+  .catch(err => {
+    Vue.$vux.toast.text('' + err,'top');
+    return;
   })
 }
  
 // 返回在vue模板中的调用接口
 export default {
   get: function (url, params, success, failure) {
-    return apiAxios('GET', url, params, success, failure)
+    return apiAxios('GET', url, params, success, failure);
   },
   post: function (url, params, success, failure) {
-    return apiAxios('POST', url, params, success, failure)
+    return apiAxios('POST', url, params, success, failure);
   }
  
 }
