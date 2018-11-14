@@ -3,30 +3,30 @@
         <v-logo-header></v-logo-header>
         <div class="form">
             <group>
-                <x-input placeholder="请输入您的手机号" :value="phone" @input="updatePhone"></x-input>
-                <x-input placeholder="请输入您的验证码" :value="captcha" @input="updateCaptcha">
-                    <x-button slot="right" :gradients="[gradientStart, gradientEnd]" @click.native="getCaptcha($event.target.__vue__)" mini>获取验证码</x-button>
+                <x-input placeholder="请输入您的手机号" v-model="phone"></x-input>
+                <x-input placeholder="请输入您的验证码" v-model="captcha">
+                    <x-button slot="right" :gradients="[gradientStart, gradientEnd]" @click.native="getCaptcha" mini>获取验证码</x-button>
                 </x-input>
-                <x-input placeholder="请设置您的密码" :value="password" @input="updatePassword"></x-input>
+                <x-input placeholder="请设置您的密码" v-model="password"></x-input>
                 <div class="userAgreement">
                     <check-icon :value.sync="checkUserAgreement">我已阅读并同意<router-link to="userAgreement">《注册服务协议》</router-link></check-icon>
                 </div>
-                <x-button :gradients="[gradientStart, gradientEnd]" @click.native="checkAndRegister($event.target.__vue__)">立刻注册</x-button>
+                <x-button :gradients="[gradientStart, gradientEnd]" @click.native="register">立刻注册</x-button>
             </group>
         </div>
     </div>
 </template>
 <script>
-import {mapState, mapMutations, mapActions } from 'vuex';
+import {mapMutations } from 'vuex';
 import { CheckIcon } from 'vux';
 
 export default {
     name : 'Register',
-    computed :{
-        ...mapState('register',['phone','captcha','password'])
-    },
     data() {
         return {
+            phone : "",
+            captcha : "",
+            password : "",
             gradientStart : global.GRADIENT_START,
             gradientEnd : global.GRADIENT_END,
             checkUserAgreement : false
@@ -36,18 +36,28 @@ export default {
         CheckIcon
     },
     methods : {
-        ...mapMutations ('register',['updatePhone','updateCaptcha','updatePassword','clear']),
-        ...mapActions('register',['getCaptcha','register']),
-        checkAndRegister : function (vue) {
+        ...mapMutations (['updateLoginAccount']),
+        getCaptcha : function () {
+            let postData = {mobile : this.phone};
+            this.$http.post('/register',postData,null,null);
+        },
+        register : function () {
             if(!this.checkUserAgreement) {
                 this.$vux.toast.text(global.CHECK_TIP,'top');
                 return;
             }
-            this.register(vue);
+            let postData = {
+                mobile : this.phone,
+                password : this.password,
+                captcha : this.captcha,
+                event : 'register'
+            };
+            this.$http.post('/submit',postData,registerSuccess,null);
+        },
+        registerSuccess : function (data) {
+            this.updateLoginAccount(this.phone);
+            this.$jump('birth');
         }
-    },
-    beforeDestroy () {
-        this.clear();
     }
 }
 </script>
