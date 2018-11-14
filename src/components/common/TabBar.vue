@@ -2,7 +2,7 @@
     <div class="tab-bar">
         <div class="tab-bar-list">
             <div class="tab-bar-item" v-for="(tab,index) in tabs" :key="index" @click="$jump(tab.route);replaceIco(tab.name)">
-                <img :src="isSelect === tab.name ? tab.icoUrlActive : tab.icoUrl" :class="setClass(index)">
+                <img :src="isSelect === tab.name ? tab.icoUrlActive : tab.icoUrl" class="ico master-ico" :class="setClass(index)">
                 <div class="tab-title">{{tab.name}}</div>    
             </div>        
         </div>
@@ -51,12 +51,13 @@ export default {
     methods: {
         // 动态赋值class,目的是为每个ico设置具体的样式
         setClass(index) {
-            let obj = {tabIco: true};
-            obj[`tabIco${index+1}`] = true;
-            return obj;
+            let obj = {tabIco: true}
+            obj[`tabIco${index+1}`] = true
+            return obj
         },
         replaceIco: function(name) {
-            this.isSelect = name;
+            this.isSelect = name
+            this.$emit("listenToChildEvent",this.isSelect)
         }
     }
 }
@@ -89,7 +90,7 @@ export default {
                 }
             }
             .tab-bar-item:nth-child(3){
-                .translate(0,-20/75rem);
+                .translate(0,-20/75rem)               
             }
         }
     }
