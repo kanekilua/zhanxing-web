@@ -57,8 +57,3 @@ new Vue({
     eventHub: new Vue() // 使用集中的事件处理器,一劳永逸的在任何组件调用事件发射、接受的方法
   }
 })
-
-// 自定义路由方法
-Vue.prototype.$jump = function(index) {
-  this.$router.push(index);
-}
