@@ -43,11 +43,11 @@ function apiAxios (method, url, params, success, failure) {
   .then(function (res) {
     if (res.data.code === 'success') {
       if (success) {
-        success(res.data.data);
+        success(res.data);
       }
     } else {
       if (failure) {
-        failure(res.data.msg);
+        failure(res.data);
       }else {
         Vue.$vux.toast.text(res.data.msg,'top');
         return;
