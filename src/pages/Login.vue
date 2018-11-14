@@ -3,14 +3,14 @@
         <v-logo-header></v-logo-header>
         <div class="form">
             <group>
-                <x-input placeholder="请输入您的账号"></x-input>
-                <x-input placeholder="请输入您的密码"></x-input>
+                <x-input placeholder="请输入您的账号" v-model="account"></x-input>
+                <x-input placeholder="请输入您的密码" v-model="password"></x-input>
                 <div class="resetPassword">
                     <span :style="{color:resetPwdColor}" @touchstart="resetStyleChange" @click="$jump('resetPwd')">忘记密码?</span>
                     <span>/</span>
                     <span :style="{color:registerColor}" @touchstart="registerStyleChange"  @click="$jump('register')">立即注册</span>
                 </div>
-                <div class="loginButton"><x-button :gradients="[this.gradientStart, this.gradientEnd]" link="birth">立刻登入</x-button></div>
+                <x-button :gradients="[gradientStart, gradientEnd]" @click.native="login">立刻登入</x-button>
             </group>
             <div class="externLink">
                 <img src="../assets/image/login/qq@3x.png" alt="qq">
@@ -21,29 +21,39 @@
     </div>
 </template>
 <script>
-import {mapState} from 'vuex';
+import {mapMutations} from 'vuex';
 
 export default {
     name : 'Login',
-    computed :{
-        ...mapState(['inputColor','linkColor','gradientStart','gradientEnd'])
-    },
-    mounted : function (){
-        this.resetPwdColor = this.inputColor;
-        this.registerColor = this.inputColor;
-    },
     data() {
         return {
-            resetPwdColor : '',
-            registerColor : ''
+            account : "",
+            password : "",
+            gradientStart : global.GRADIENT_START,
+            gradientEnd : global.GRADIENT_END,
+            resetPwdColor : global.INPUTCOLOR,
+            registerColor :  global.INPUTCOLOR
         }
     },
     methods : {
+        ...mapMutations (['updateLoginAccount']),
         resetStyleChange : function() {
-            this.resetPwdColor = this.linkColor;
+            this.resetPwdColor = global.LINKCOLOR;
         },
         registerStyleChange : function () {
-            this.registerColor = this.linkColor;
+            this.registerColor = global.LINKCOLOR;
+        },
+        login :function () {
+            let loginData = {
+                account : this.account,
+                password : this.password
+            };
+            this.$http.post('/login',loginData,this.loginSuccess,null);
+        },
+        loginSuccess : function(result) {
+            this.updateLoginAccount(this.account);
+            localStorage.setItem(global.APP_TOKEN,result.data.token);
+            this.$jump('birth');
         }
     }
 }
@@ -57,7 +67,7 @@ export default {
         margin-top : 30/75rem;
         color : @inputColor;
     }
-    .loginButton {
+    & /deep/ weui-btn {
         margin-top : 75/75rem;
     }
     .externLink {

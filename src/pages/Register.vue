@@ -3,35 +3,61 @@
         <v-logo-header></v-logo-header>
         <div class="form">
             <group>
-                <x-input placeholder="请输入您的手机号"></x-input>
-                <x-input placeholder="请输入您的验证码">
-                    <x-button slot="right" :gradients="[this.gradientStart, this.gradientEnd]" mini>获取验证码</x-button>
+                <x-input placeholder="请输入您的手机号" v-model="phone"></x-input>
+                <x-input placeholder="请输入您的验证码" v-model="captcha">
+                    <x-button slot="right" :gradients="[gradientStart, gradientEnd]" @click.native="getCaptcha" mini>获取验证码</x-button>
                 </x-input>
-                <x-input placeholder="请设置您的密码"></x-input>
+                <x-input placeholder="请设置您的密码" v-model="password"></x-input>
                 <div class="userAgreement">
                     <check-icon :value.sync="checkUserAgreement">我已阅读并同意<router-link to="userAgreement">《注册服务协议》</router-link></check-icon>
                 </div>
-                <div class="registerButton"><x-button :gradients="[this.gradientStart, this.gradientEnd]">立刻注册</x-button></div>
+                <x-button :gradients="[gradientStart, gradientEnd]" @click.native="register">立刻注册</x-button>
             </group>
         </div>
     </div>
 </template>
 <script>
-import {mapState, mapMutations } from 'vuex';
+import {mapMutations } from 'vuex';
 import { CheckIcon } from 'vux';
 
 export default {
     name : 'Register',
-    computed :{
-        ...mapState(['gradientStart','gradientEnd'])
-    },
     data() {
         return {
+            phone : "",
+            captcha : "",
+            password : "",
+            gradientStart : global.GRADIENT_START,
+            gradientEnd : global.GRADIENT_END,
             checkUserAgreement : false
         }
     },
     components: {
         CheckIcon
+    },
+    methods : {
+        ...mapMutations (['updateLoginAccount']),
+        getCaptcha : function () {
+            let postData = {mobile : this.phone};
+            this.$http.post('/register',postData,null,null);
+        },
+        register : function () {
+            if(!this.checkUserAgreement) {
+                this.$vux.toast.text(global.CHECK_TIP,'top');
+                return;
+            }
+            let postData = {
+                mobile : this.phone,
+                password : this.password,
+                captcha : this.captcha,
+                event : 'register'
+            };
+            this.$http.post('/submit',postData,registerSuccess,null);
+        },
+        registerSuccess : function () {
+            this.updateLoginAccount(this.phone);
+            this.$jump('birth');
+        }
     }
 }
 </script>

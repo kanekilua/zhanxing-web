@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .birth{
     background: #fff;
     .birth-form{
@@ -60,9 +60,9 @@ export default {
         border-bottom: 1px solid #eee; 
         font-weight: 400;
         font-size: 34/75rem;
-        font-family:PingFang SC;
         font-weight:400;
         color:rgba(0,0,0,1);
+        outline: none;
     }
     .input-born{
         margin-bottom: 80/75rem;
@@ -111,11 +111,9 @@ export default {
         height: 90/75rem;
         border-radius: 40/75rem;
         font-size: 28/75rem;
-        font-family:PingFang SC
     }
 
 }
-
 
 
 </style>
