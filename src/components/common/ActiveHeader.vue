@@ -1,28 +1,28 @@
 <template>
-    <nav class="nav" :class="isDown?downnav:upnav"  v-touch:down="downNav" v-touch:up="upNav">
+    <nav class="nav" :class="navClass"  v-touch:down="downNav" v-touch:up="upNav">
         <h2 class="nav-title" >{{navTitle}}</h2>
     </nav>
 </template>
 
 <script>
 export default {
+    computed : {
+        'navClass' () {
+            return isDown?'down-nav':'up-nav';
+        }
+    },
     data () {
         return{
-            downnav: 'down-nav',
-            upnav: 'up-nav',
             isDown: true
         }
     },
     props: ['navTitle'],
     methods: {
         downNav: function() {
-           this.isDown = true
-           console.log(this.isDown)
+           this.isDown = true;
         },
         upNav: function () {
-            this.isDown = false
-           console.log(this.isDown)
-
+            this.isDown = false;
         }
     }
 }
