@@ -39,7 +39,7 @@ export default {
         ...mapMutations (['updateLoginAccount']),
         getCaptcha : function () {
             let postData = {mobile : this.phone};
-            this.$http.post('/register',postData,null,null);
+            this.$http.post('/register',postData,null,null,null);
         },
         register : function () {
             if(!this.checkUserAgreement) {
@@ -52,7 +52,7 @@ export default {
                 captcha : this.captcha,
                 event : 'register'
             };
-            this.$http.post('/submit',postData,registerSuccess,null);
+            this.$http.post('/submit',postData,null,registerSuccess,null);
         },
         registerSuccess : function () {
             this.updateLoginAccount(this.phone);

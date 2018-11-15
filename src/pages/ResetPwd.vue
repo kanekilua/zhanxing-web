@@ -32,7 +32,7 @@ export default {
     methods : {
         getCaptcha : function () {
             let postData = {mobile : this.phone};
-            this.$http.post('/changepwd',postData,null,null);
+            this.$http.post('/changepwd',postData,null,null,null);
         },
         resetPwd : function () {
             let postData = {
@@ -41,7 +41,7 @@ export default {
                 captcha : this.captcha,
                 event : 'changepwd'
             };
-            this.$http.post('/submit',postData,resetPwdSuccess,null);
+            this.$http.post('/submit',postData,null,resetPwdSuccess,null);
         },
         resetPwdSuccess : function () {
             this.$vux.toast.text(json.msg,'top');
