@@ -3,12 +3,12 @@
         <v-title-header :title='title'></v-title-header>
         <div class="form">
             <group>
-                <x-input placeholder="请输入您的手机号" v-model='phone' ></x-input>
-                <x-input placeholder="请输入您的验证码" v-model='captcha' >
+                <x-input placeholder="请输入您的手机号" v-model='phone' keyboard="number" is-type="china-mobile" :max="11"></x-input>
+                <x-input placeholder="请输入您的验证码" v-model='captcha' :max="4" type="number" >
                     <x-button slot="right" :gradients="[gradientStart, gradientEnd]" @click.native="getCaptcha" mini>获取验证码</x-button>
                 </x-input>
-                <x-input placeholder="请设置您的密码" v-model='password' ></x-input>
-                <x-input placeholder="请再次确认您的密码" v-model='passwordComfirm' ></x-input>
+                <x-input placeholder="请设置您的密码" v-model='password' :min="8" :max="18" type="password"></x-input>
+                <x-input placeholder="请再次确认您的密码" v-model='passwordComfirm' :min="8" :max="18" type="password" :equal-with="password"></x-input>
                 <x-button :gradients="[gradientStart, gradientEnd]" @click.native="resetPwd">确认</x-button>
             </group>
         </div>
@@ -31,17 +31,32 @@ export default {
     },
     methods : {
         getCaptcha : function () {
+            if(!this.$utils.checkPhone(this.phone,this)) {
+                return;
+            }
             let postData = {mobile : this.phone};
             this.$http.post('/changepwd',postData,null,null,null);
         },
         resetPwd : function () {
+            if(!this.$utils.checkPhone(this.phone,this)) {
+                return;
+            }
+            if(!this.$utils.checkCaptcha(this.captcha,this)) {
+                return;
+            }
+            if(!this.$utils.checkPassword(this.password,this)) {
+                return;
+            }
+            if(!this.$utils.checkPassword(this.passwordComfirm,this)) {
+                return;
+            }
             let postData = {
                 mobile : this.phone,
                 password : this.password,
                 captcha : this.captcha,
                 event : 'changepwd'
             };
-            this.$http.post('/submit',postData,null,resetPwdSuccess,null);
+            this.$http.post('/submit',postData,null,this.resetPwdSuccess,null);
         },
         resetPwdSuccess : function () {
             this.$vux.toast.text(json.msg,'top');
