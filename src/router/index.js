@@ -15,16 +15,6 @@ import Fortune from '@/pages/Fortune'
 import Predict from '@/pages/Predict'
 import Mine from '@/pages/Mine'
 
-// fortune路由
-import TodayFortune from  '@/pages/TodayFortune'
-import MonthFortune from  '@/pages/MonthFortune'
-import YearFortune from  '@/pages/YearFortune'
-
-
-
-
-
-
 Vue.use(Router)
 
 export default new Router({
@@ -63,6 +53,7 @@ export default new Router({
       path :'/main',
       name : 'main',
       component : Main,
+      redirect: '/main/home',
       children: [
         {
           path : "/main/home",
@@ -77,26 +68,7 @@ export default new Router({
         {
           path : "/main/fortune",
           name : "fortune",
-          component: Fortune,
-          linkActiveClass: 'navActive',
-          redirect: '/main/fortune/todayFortune',
-          children: [
-            {
-              path: "/main/fortune/todayFortune",
-              name: "todayFortune",
-              component: TodayFortune
-            },
-            {
-              path: "/main/fortune/monthFortune",
-              name: "monthFortune",
-              component: MonthFortune
-            },
-            {
-              path: "/main/fortune/yearFortune",
-              name: "yearFortune",
-              component: YearFortune
-            }
-          ]
+          component: Fortune
         },
         {
           path : "/main/predict",
@@ -110,9 +82,5 @@ export default new Router({
         }
       ]
     }
-
-    
-
-
   ]
 })
