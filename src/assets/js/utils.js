@@ -31,7 +31,7 @@ export default {
     },
     checkPhone : function (phone, vue) {
         let result = true;
-        if(/^1(3|4|5|7|8)\d{9}$/.test(phone)) {
+        if(!/^1(3|4|5|7|8)\d{9}$/.test(phone)) {
             result = false;
         }
         if(!result) {
