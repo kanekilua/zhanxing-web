@@ -8,7 +8,7 @@
 export default {
     computed : {
         'navClass' () {
-            return isDown?'down-nav':'up-nav';
+            return this.isDown?'down-nav':'up-nav';
         }
     },
     data () {
