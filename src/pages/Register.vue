@@ -3,11 +3,11 @@
         <v-logo-header></v-logo-header>
         <div class="form">
             <group>
-                <x-input placeholder="请输入您的手机号" v-model="phone"></x-input>
-                <x-input placeholder="请输入您的验证码" v-model="captcha">
+                <x-input placeholder="请输入您的手机号" v-model="phone" keyboard="number" is-type="china-mobile" :max="11"></x-input>
+                <x-input placeholder="请输入您的验证码" v-model="captcha" :max="4" type="number">
                     <x-button slot="right" :gradients="[gradientStart, gradientEnd]" @click.native="getCaptcha" mini>获取验证码</x-button>
                 </x-input>
-                <x-input placeholder="请设置您的密码" v-model="password"></x-input>
+                <x-input placeholder="请设置您的密码" v-model="password" :min="8" :max="18" type="password"></x-input>
                 <div class="userAgreement">
                     <check-icon :value.sync="checkUserAgreement">我已阅读并同意<router-link to="userAgreement">《注册服务协议》</router-link></check-icon>
                 </div>
@@ -38,12 +38,24 @@ export default {
     methods : {
         ...mapMutations (['updateLoginAccount']),
         getCaptcha : function () {
+            if(!this.$utils.checkPhone(this.phone,this)) {
+                return;
+            }
             let postData = {mobile : this.phone};
             this.$http.post('/register',postData,null,null,null);
         },
         register : function () {
             if(!this.checkUserAgreement) {
                 this.$vux.toast.text(global.CHECK_TIP,'top');
+                return;
+            }
+            if(!this.$utils.checkPhone(this.phone,this)) {
+                return;
+            }
+            if(!this.$utils.checkCaptcha(this.captcha,this)) {
+                return;
+            }
+            if(!this.$utils.checkPassword(this.password,this)) {
                 return;
             }
             let postData = {

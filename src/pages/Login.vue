@@ -3,8 +3,8 @@
         <v-logo-header></v-logo-header>
         <div class="form">
             <group>
-                <x-input placeholder="请输入您的账号" v-model="account"></x-input>
-                <x-input placeholder="请输入您的密码" v-model="password"></x-input>
+                <x-input placeholder="请输入您的账号" v-model="account" :max="12"></x-input>
+                <x-input placeholder="请输入您的密码" v-model="password" :min="8" :max="18" type="password"></x-input>
                 <div class="resetPassword">
                     <span :style="{color:resetPwdColor}" @touchstart="resetStyleChange" @click="$jump('resetPwd')">忘记密码?</span>
                     <span>/</span>
@@ -44,6 +44,12 @@ export default {
             this.registerColor = global.LINKCOLOR;
         },
         login :function () {
+            if(!this.$utils.checkAccount(this.account,this)) {
+                return;
+            }
+            if(!this.$utils.checkPassword(this.account,this)) {
+                return;
+            }
             let loginData = {
                 account : this.account,
                 password : this.password
