@@ -18,6 +18,7 @@ Vue.prototype.$utils = utils;
 // 引用外部js
 import rem from '../static/js/rem'
 
+
 // 加载自定义公共组件
 import components from './components/' 
 Object.keys(components).forEach((key) => {
@@ -57,5 +58,8 @@ new Vue({
   router,
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  data: {
+    eventHub: new Vue() // 使用集中的事件处理器,一劳永逸的在任何组件调用事件发射、接受的方法
+  }
 })

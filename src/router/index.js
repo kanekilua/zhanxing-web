@@ -7,6 +7,14 @@ import ResetPwd from '@/pages/ResetPwd'
 import UserAgreement from '@/pages/UserAgreement'
 import Birth from '@/pages/Birth'
 
+// 主路由页面
+import Main from '@/pages/Main'
+import Home from '@/pages/Home'
+import Master from '@/pages/Master'
+import Fortune from '@/pages/Fortune'
+import Predict from '@/pages/Predict'
+import Mine from '@/pages/Mine'
+
 Vue.use(Router)
 
 export default new Router({
@@ -40,6 +48,39 @@ export default new Router({
       path : '/birth',
       name : 'birth',
       component : Birth
+    },
+    {
+      path :'/main',
+      name : 'main',
+      component : Main,
+      redirect: '/main/home',
+      children: [
+        {
+          path : "/main/home",
+          name : "home",
+          component: Home
+        },
+        {
+          path : "/main/master",
+          name : "master",
+          component: Master
+        },
+        {
+          path : "/main/fortune",
+          name : "fortune",
+          component: Fortune
+        },
+        {
+          path : "/main/predict",
+          name : "predict",
+          component: Predict
+        },
+        {
+          path : "/main/mine",
+          name : "mine",
+          component: Mine
+        }
+      ]
     }
   ]
 })
