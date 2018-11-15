@@ -17,19 +17,24 @@
                 </div>
             </div>
             <input type="text" class="input-born" placeholder="请选择您的出生日期">
-            <x-button :gradients="['#3237a6', '#7119d4']" id="save-confirm">确认保存</x-button>
+            <x-button :gradients="[gradientStart, gradientEnd]" id="save-confirm">确认保存</x-button>
         </div>
     </div>
 </template>
 
 <script>
-
+import { Datetime } from 'vux'
 
 export default {
     data () {
         return {
-            navTitle: "生辰八字"
+            navTitle: "生辰八字",
+            gradientStart : global.GRADIENT_START,
+            gradientEnd : global.GRADIENT_END
         }
+    },
+    components: {
+        Datetime
     }
 }
 </script>
@@ -103,8 +108,6 @@ export default {
             color:rgba(0,0,0,1);
                 opacity:0.2;
         }
-
-        
     }
     #save-confirm{
         width: 504/75rem;
@@ -114,8 +117,6 @@ export default {
     }
 
 }
-
-
 </style>
 
 
