@@ -53,7 +53,7 @@ export default {
         loginSuccess : function(result) {
             this.updateLoginAccount(this.account);
             localStorage.setItem(global.APP_TOKEN,result.data.token);
-            this.$jump('birth');
+            this.$jump('main');
         }
     }
 }

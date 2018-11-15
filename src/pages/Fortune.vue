@@ -5,7 +5,7 @@
            <div class="user-message">
                <div class="user-message-top">
                    <div>名字：{{userName}}</div>
-                   <div class="switchUser">
+                   <div class="switchUser" @click="logout">
                        <div>切换用户</div><i></i>
                    </div>
                </div>
@@ -66,6 +66,16 @@ export default {
     },
     methods : {
         ...mapMutations('fortune',['updateNavIndex']),
+        logout :function () {
+            let token = localStorage.getItem(global.APP_TOKEN);
+            let header = {'Authorization':token};
+            this.$http.get('/logout',null,header,this.logoutSuccess,null);
+        },
+        logoutSuccess : function (result) {
+            this.updateLoginAccount("");
+            localStorage.setItem(global.APP_TOKEN,result.data.token);
+            this.$jump('login');
+        }
     }
 }
 </script>
