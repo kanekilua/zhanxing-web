@@ -28,7 +28,7 @@ function filterNull (o) {
   return o;
 }
  
-function apiAxios (method, url, params, success, failure) {
+function apiAxios (method, url, params, headers, success, failure) {
   if (params) {
     params = filterNull(params);
   }
@@ -38,6 +38,7 @@ function apiAxios (method, url, params, success, failure) {
     data: method === 'POST'  ? params : null,
     params: method === 'GET'  ? params : null,
     baseURL: root,
+    headers: headers,
     withCredentials: false
   })
   .then(function (res) {
@@ -62,11 +63,11 @@ function apiAxios (method, url, params, success, failure) {
  
 // 返回在vue模板中的调用接口
 export default {
-  get: function (url, params, success, failure) {
-    return apiAxios('GET', url, params, success, failure);
+  get: function (url, params,headers, success, failure) {
+    return apiAxios('GET', url, params,headers, success, failure);
   },
-  post: function (url, params, success, failure) {
-    return apiAxios('POST', url, params, success, failure);
+  post: function (url, params,headers, success, failure) {
+    return apiAxios('POST', url, params,headers, success, failure);
   }
  
 }
