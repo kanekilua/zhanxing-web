@@ -47,9 +47,8 @@ export default {
         }
     },
     mounted() {
-        let indexFromPath = this.$route.path === '/main/fortune/todayFortune' ? 0 : this.$route.path === '/main/fortune/monthFortune' ? 1 : this.$route.path === '/main/fortune/yearFortune' ? 2 : 0;
-        if(indexFromPath != this.navIndex) {
-            this.updateNavIndex(indexFromPath);
+        if(this.navIndex != 0) {
+            this.swiper.slideTo(this.navIndex, 0, false);
         }
         this.swiper.on('slideChange', () => {
             this.updateNavIndex(this.swiper.activeIndex);

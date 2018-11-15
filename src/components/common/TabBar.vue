@@ -1,8 +1,8 @@
 <template>
     <div class="tab-bar">
         <div class="tab-bar-list">
-            <div class="tab-bar-item" v-for="(tab,index) in tabs" :key="index" @click="$jump(tab.route);replaceIco(tab.name)">
-                <img :src="isSelect === tab.name ? tab.icoUrlActive : tab.icoUrl" class="ico master-ico" :class="setClass(index)">
+            <div class="tab-bar-item" v-for="(tab,index) in tabs" :key="index" @click="$jump(tab.route)">
+                <img :src="isSelect === tab.route ? tab.icoUrlActive : tab.icoUrl" class="ico master-ico" :class="setClass(index)">
                 <div class="tab-title">{{tab.name}}</div>    
             </div>        
         </div>
@@ -11,9 +11,13 @@
 
 <script>
 export default {
+    computed : {
+        'isSelect' () {
+            return this.$route.path;
+        }
+    },
     data() {
         return {
-            isSelect: "首页",
             tabs: [
                 {
                     icoUrl: require("../../assets/image/tab-bar/home-ico@2x.png"),
@@ -54,10 +58,6 @@ export default {
             let obj = {tabIco: true}
             obj[`tabIco${index+1}`] = true
             return obj
-        },
-        replaceIco: function(name) {
-            this.isSelect = name
-            this.$emit("listenToChildEvent",this.isSelect)
         }
     }
 }
