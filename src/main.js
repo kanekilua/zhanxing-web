@@ -4,10 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import touch from 'vue-directive-touch'
-
-
-Vue.use(touch)
 
 // 引用公共样式style
 import './assets/style/commonStyle.less'
@@ -32,12 +28,22 @@ Object.keys(components).forEach((key) => {
 
 // vux基础组件引用
 import { XButton,XInput,Group,Flexbox, FlexboxItem, ToastPlugin } from 'vux'
-Vue.component('x-button', XButton)
-Vue.component('x-input', XInput)
-Vue.component('group', Group)
-Vue.component('flexbox', Flexbox)
-Vue.component('flexbox-item', FlexboxItem)
-Vue.use(ToastPlugin)
+Vue.component('x-button', XButton);
+Vue.component('x-input', XInput);
+Vue.component('group', Group);
+Vue.component('flexbox', Flexbox);
+Vue.component('flexbox-item', FlexboxItem);
+Vue.use(ToastPlugin);
+
+// vue2.0移动设备指令
+import touch from 'vue-directive-touch'
+Vue.use(touch)
+
+// 引用swiper插件
+import {swiperSlide,swiper } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.min.css'
+Vue.component('swiper', swiper);
+Vue.component('swiper-slide', swiperSlide);
 
 Vue.config.productionTip = false;
 
@@ -57,8 +63,3 @@ new Vue({
     eventHub: new Vue() // 使用集中的事件处理器,一劳永逸的在任何组件调用事件发射、接受的方法
   }
 })
-
-// 自定义路由方法
-Vue.prototype.$jump = function(index) {
-  this.$router.push(index);
-}
