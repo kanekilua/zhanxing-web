@@ -11,7 +11,6 @@ export default {
 .today-wrap{
 
     height: 500px;
-    background: red;
 }
 </style>
 

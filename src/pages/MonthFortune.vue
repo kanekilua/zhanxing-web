@@ -11,6 +11,5 @@ export default {
 .month-wrap{
 
     height: 500px;
-    background: pink;
 }
 </style>

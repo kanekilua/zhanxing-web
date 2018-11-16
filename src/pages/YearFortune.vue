@@ -11,6 +11,5 @@ export default {
 .year-wrap{
 
     height: 500px;
-    background: green;
 }
 </style>

@@ -68,7 +68,7 @@ export default {
         },
         registerSuccess : function () {
             this.updateLoginAccount(this.phone);
-            this.$jump('birth');
+            this.$jump('main');
         }
     }
 }
